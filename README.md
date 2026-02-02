@@ -1,2 +1,220 @@
-# Calcul-bar-me-INTRA-1D
-Calculer barème INTRA 1D académie de Bordeaux
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calculateur de barème CFDT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: Arial; background:#f5f5f5; margin:0; padding:0; }
+  .container { max-width:720px; margin:40px auto; padding:30px; background:white; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
+  h1 { color:#ff6600; text-align:center; margin-bottom:5px; }
+  p.subtitle { font-size:14px; color:#555; text-align:center; margin-top:0; margin-bottom:20px; line-height:1.5; }
+  .logo { text-align:center; margin-bottom:20px; }
+  h2.section-title { background:#ff6600; color:white; padding:8px 12px; border-radius:6px; margin-top:25px; }
+  label { display:block; margin-top:12px; font-weight:bold; }
+  select,input[type=number] { width:100%; padding:10px; margin-top:5px; border-radius:6px; font-size:14px; border:1px solid #ccc; }
+  .radio-group label { font-weight: normal; margin-right:15px; }
+  button { width:100%; padding:12px; margin-top:20px; border-radius:6px; font-size:16px; background:#ff6600; color:white; border:none; cursor:pointer; }
+  button:hover { background:#e25500; }
+  .rgpd { font-size:12px; margin-top:20px; color:#555; }
+  #result { margin-top:20px; font-weight:bold; font-size:16px; background:#ff6600; color:white; padding:15px; border-radius:8px; }
+  .detail { font-weight: normal; color: #fff; margin-top:10px; font-size:14px; }
+  .section { padding:15px; background:#ffe5cc; border-radius:8px; margin-top:15px; }
+  a { text-decoration:none; }
+  .btn-link { display:inline-block; background:#ff6600; color:white; font-size:18px; padding:12px 20px; border-radius:8px; font-weight:bold; text-decoration:none; margin-top:10px; }
+  .btn-link:hover { background:#e25500; }
+  .img-intra { display:block; margin:15px auto 0; max-width:200px; border-radius:8px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Logo -->
+  <div class="logo">
+    <img src="https://sgen-cfdt.fr/contenu/uploads/sites/14/2026/02/LOGO-CAR-OR.png" width="180" alt="Logo CFDT Académie de Bordeaux">
+  </div>
+
+  <h1>Calculateur de barème CFDT</h1>
+  <p class="subtitle">
+    Calcule ton barème pour le mouvement INTRA dans le premier degré pour l'académie de Bordeaux.<br><br>
+    La Team CFDT Aquitaine t'accompagne pour une stratégie pertinente et des vœux cohérents.
+  </p>
+
+  <!-- Rubrique : Département & Grade -->
+  <h2 class="section-title">1. Département & Grade</h2>
+  <div class="section">
+    <label>Département :</label>
+    <select id="departement">
+      <option value="">Choisir…</option>
+      <option value="Dordogne">Dordogne</option>
+      <option value="Gironde">Gironde</option>
+      <option value="Landes">Landes</option>
+      <option value="Lot-et-Garonne">Lot-et-Garonne</option>
+      <option value="Pyrénées-Atlantiques">Pyrénées-Atlantiques</option>
+    </select>
+
+    <label>Grade :</label>
+    <select id="grade">
+      <option value="">Choisir…</option>
+      <option value="normale">Classe normale</option>
+      <option value="horsclasse">Hors classe</option>
+      <option value="exceptionnelle">Classe exceptionnelle</option>
+    </select>
+
+    <label>Échelon :</label>
+    <select id="echelon">
+      <option value="">Choisir…</option>
+      <option value="1">Échelon 1</option>
+      <option value="2">Échelon 2</option>
+      <option value="3">Échelon 3</option>
+      <option value="4">Échelon 4</option>
+      <option value="5">Échelon 5</option>
+      <option value="6">Échelon 6</option>
+      <option value="7">Échelon 7</option>
+      <option value="8">Échelon 8</option>
+      <option value="9">Échelon 9</option>
+      <option value="10">Échelon 10</option>
+      <option value="11">Échelon 11</option>
+    </select>
+  </div>
+
+  <!-- Rubrique : Ancienneté -->
+  <h2 class="section-title">2. Ancienneté</h2>
+  <div class="section">
+    <label>Ancienneté dans l'Éducation nationale au 1er septembre 2025 (en années) :</label>
+    <input type="number" id="anciennete" min="0" max="50" placeholder="Ex : 12">
+  </div>
+
+  <!-- Rubrique : Famille -->
+  <h2 class="section-title">3. Situation familiale</h2>
+  <div class="section">
+    <label>Nombre d'enfants de moins de 18 ans au 1er septembre 2026 (aucune limite d'âge pour enfants en situation de handicap) :</label>
+    <input type="number" id="enfants" min="0" max="10" placeholder="Ex : 2">
+
+    <label>Êtes-vous parent isolé ? (Seul détenteur de l'autorité parentale)</label>
+    <div class="radio-group">
+      <label><input type="radio" name="parentIsole" value="oui"> Oui</label>
+      <label><input type="radio" name="parentIsole" value="non"> Non</label>
+    </div>
+  </div>
+
+  <!-- Rubrique : Mesures spécifiques -->
+  <h2 class="section-title">4. Mesures spécifiques</h2>
+  <div class="section">
+    <label>Êtes-vous en mesure de carte scolaire ?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="carteScolaire" value="oui"> Oui</label>
+      <label><input type="radio" name="carteScolaire" value="non"> Non</label>
+    </div>
+
+    <label>Avez-vous une mesure RQTH ?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="rqth" value="oui"> Oui</label>
+      <label><input type="radio" name="rqth" value="non"> Non</label>
+    </div>
+
+    <label>Avez-vous une bonification ou majoration de barème RQTH ?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="bonifRqth" value="oui"> Oui</label>
+      <label><input type="radio" name="bonifRqth" value="non"> Non</label>
+    </div>
+  </div>
+
+  <!-- Rubrique : REP / zone spécifique -->
+  <h2 class="section-title">5. Expérience REP / Zones spécifiques</h2>
+  <div class="section">
+    <label>Nombre d'années dans la même école en REP / Zone rurale isolée / Politique de la ville :</label>
+    <input type="number" id="rep" min="0" max="50" placeholder="Ex : 4">
+  </div>
+
+  <!-- RGPD -->
+  <label class="rgpd">
+    <input type="checkbox" id="consentement"> J’accepte que mes données soient utilisées uniquement dans le cadre de l’activité syndicale CFDT
+  </label>
+
+  <button onclick="calculer()">Calculer mon barème</button>
+
+  <div id="result"></div>
+
+  <!-- Dossier INTRA et adhésion -->
+  <div class="section" style="text-align:center;">
+    <h2>Le dossier INTRA</h2>
+    <a href="https://aquitaine.sgen-cfdt.fr/dossier/le-mouvement-choisir-son-poste-a-la-rentree/" target="_blank" class="btn-link">
+      Cliquez ici
+    </a>
+    <img src="https://sgen-cfdt.fr/contenu/uploads/sites/14/2024/03/AQ-intra1-300x300.png" alt="Dossier INTRA CFDT" class="img-intra">
+    
+    <p style="margin-top:10px;">Pour toute question, contactez-nous au : <strong>06 73 31 45 51</strong></p>
+    
+    <p>Vous souhaitez adhérer ?</p>
+    <a href="https://aquitaine.sgen-cfdt.fr/actu/adherer-sgen-cfdt-aquitaine/" target="_blank" class="btn-link">
+      Pour adhérer, c'est par ici
+    </a>
+  </div>
+
+</div>
+
+<script>
+function calculer() {
+  const departement = document.getElementById('departement').value;
+  const grade = document.getElementById('grade').value;
+  const echelon = parseInt(document.getElementById('echelon').value) || 0;
+  const anciennete = parseInt(document.getElementById('anciennete').value) || 0;
+  const enfants = parseInt(document.getElementById('enfants').value) || 0;
+  const carte = document.querySelector('input[name="carteScolaire"]:checked')?.value || "non";
+  const rqth = document.querySelector('input[name="rqth"]:checked')?.value || "non";
+  const bonifRqth = document.querySelector('input[name="bonifRqth"]:checked')?.value || "non";
+  const parentIsole = document.querySelector('input[name="parentIsole"]:checked')?.value || "non";
+  const rep = parseInt(document.getElementById('rep').value) || 0;
+
+  if (!departement || !grade) { alert("Merci de remplir les champs Département et Grade obligatoires."); return; }
+
+  let points=0, detail="";
+
+  const normale=[0,5,15,20,25,30,40,50,55,60,65,70];
+  const hors=[0,55,60,65,70,75,80,85];
+  const exce=[0,65,70,75,80,90];
+
+  let pointsEchelon=0;
+  if(grade==="normale") pointsEchelon=normale[echelon]||0;
+  else if(grade==="horsclasse") pointsEchelon=hors[echelon]||0;
+  else if(grade==="exceptionnelle") pointsEchelon=exce[echelon]||0;
+  points+=pointsEchelon;
+  detail+=`Échelon (${grade}): ${pointsEchelon} pts<br>`;
+
+  let pointsAnciennete=2+(anciennete*2);
+  points+=pointsAnciennete;
+  detail+=`Ancienneté (${anciennete} ans au 1er sept 2025): ${pointsAnciennete} pts<br>`;
+
+  let pointsEnfants=Math.min(enfants,4);
+  points+=pointsEnfants;
+  detail+=`Nombre d'enfants: ${pointsEnfants} pts<br>`;
+
+  let pointsCarte=(carte==="oui"?250:0); points+=pointsCarte;
+  detail+=`Carte scolaire (${carte}): ${pointsCarte} pts<br>`;
+
+  let pointsRqth=(rqth==="oui"?50:0); points+=pointsRqth;
+  detail+=`Mesure RQTH (${rqth}): ${pointsRqth} pts<br>`;
+
+  let pointsBonif=(bonifRqth==="oui"?250:0);
+  if(bonifRqth==="oui" && rqth==="oui") pointsRqth-=50;
+  points+=pointsBonif-(bonifRqth==="oui" && rqth==="oui"?50:0);
+  detail+=`Bonification RQTH (${bonifRqth}): ${pointsBonif} pts${(bonifRqth==="oui"&&rqth==="oui"?" (-50 pts RQTH)":"")}<br>`;
+
+  let pointsParent=(parentIsole==="oui"?4:0); points+=pointsParent;
+  detail+=`Parent isolé (${parentIsole}): ${pointsParent} pts<br>`;
+
+  let pointsRep=0;
+  if(rep>=3){
+    if(departement==="Gironde") pointsRep=(rep>=5?60:30);
+    else if(departement==="Pyrénées-Atlantiques") pointsRep=(rep>=5?50:20);
+    else if(departement==="Landes") pointsRep=(rep>=5?50:20);
+  }
+  points+=pointsRep;
+  detail+=`Années en REP/zone spécifique: ${pointsRep} pts<br>`;
+
+  document.getElementById('result').innerHTML=`<strong>Total: ${points} pts</strong><div class="detail">${detail}</div>`;
+}
+</script>
+</body>
+</html>
